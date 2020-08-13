@@ -7,7 +7,7 @@ import (
 	"github.com/jfreymuth/pulse"
 )
 
-func main() {
+func play() {
 	c, err := pulse.NewClient()
 	if err != nil {
 		fmt.Println(err)
@@ -47,4 +47,12 @@ func synth(out []float32) (int, error) {
 		t += 1. / 44100
 	}
 	return len(out), nil
+}
+
+func main() {
+	for {
+		t = 0
+		phase = 0
+		play()
+	}
 }
