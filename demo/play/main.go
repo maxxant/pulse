@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"math"
 
+	"net/http"
+	_ "net/http/pprof"
+
 	"github.com/jfreymuth/pulse"
 )
 
@@ -50,6 +53,12 @@ func synth(out []float32) (int, error) {
 }
 
 func main() {
+	go func() {
+		// activate net/http/pprof
+		// see http://localhost:8080/debug/pprof while demo running
+		http.ListenAndServe("localhost:8080", nil)
+	}()
+
 	for {
 		t = 0
 		phase = 0
